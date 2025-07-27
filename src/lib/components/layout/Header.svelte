@@ -43,9 +43,9 @@
 			<!-- Logo -->
 			<div class="flex-shrink-0">
 				<button
-					on:click={() => scrollToSection('#hero')}
-					class="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-				>
+				onclick={() => scrollToSection('#hero')}
+				class="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+			>
 					EQ
 				</button>
 			</div>
@@ -55,9 +55,9 @@
 				<div class="ml-10 flex items-baseline space-x-8">
 					{#each NAVIGATION as item}
 						<button
-							on:click={() => scrollToSection(item.href)}
-							class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors"
-						>
+						onclick={() => scrollToSection(item.href)}
+						class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors"
+					>
 							{item.name}
 						</button>
 					{/each}
@@ -68,7 +68,7 @@
 			<div class="flex items-center space-x-4">
 				<!-- Theme Toggle -->
 				<button
-					on:click={theme.toggle}
+					onclick={theme.toggle}
 					class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
 					aria-label="Toggle theme"
 				>
@@ -88,7 +88,7 @@
 				<!-- Mobile menu button -->
 				<div class="md:hidden">
 					<button
-						on:click={toggleMobileMenu}
+						onclick={toggleMobileMenu}
 						class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
 						aria-label="Toggle mobile menu"
 					>
@@ -114,7 +114,7 @@
 				<div class="px-2 pt-2 pb-3 space-y-1">
 					{#each NAVIGATION as item}
 						<button
-							on:click={() => scrollToSection(item.href)}
+							onclick={() => scrollToSection(item.href)}
 							class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors"
 						>
 							{item.name}

@@ -2,7 +2,7 @@ import type { ProfileData, SocialLink, Skill, Experience, Project, NavigationIte
 
 export const PROFILE: ProfileData = {
   name: 'Eric Quevedo',
-  title: 'Software Engineer',
+  title: 'Building software from Argentina 🇦🇷',
   focus: 'Full Stack Developer',
   email: 'eric@example.com',
   location: 'Remote',

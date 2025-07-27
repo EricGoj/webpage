@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { fade, fly } from 'svelte/transition';
-  import Button from '$lib/components/ui/Button.svelte';
+  import NavigationCard from '$lib/components/ui/NavigationCard.svelte';
   import type { ProfileData } from '$lib/types/portfolio';
   
   interface Props {
@@ -10,56 +10,122 @@
   
   let { profile }: Props = $props();
   let titleVisible = $state(false);
-  let subtitleVisible = $state(false);
-  let buttonsVisible = $state(false);
+  let cardsVisible = $state(false);
   let scrollIndicatorVisible = $state(false);
   
   onMount(() => {
     titleVisible = true;
-    setTimeout(() => subtitleVisible = true, 300);
-    setTimeout(() => buttonsVisible = true, 600);
-    setTimeout(() => scrollIndicatorVisible = true, 900);
+    setTimeout(() => cardsVisible = true, 400);
+    setTimeout(() => scrollIndicatorVisible = true, 1200);
   });
   
-  function scrollToProjects() {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-  }
+  const navigationSections = [
+    {
+      title: 'Work',
+      description: 'Explora mis proyectos y experiencia profesional',
+      icon: 'briefcase',
+      targetId: 'projects'
+    },
+    {
+      title: 'LinkedIn',
+      description: 'Conecta conmigo profesionalmente',
+      icon: 'linkedin',
+      targetId: 'linkedin',
+      isExternal: true,
+      url: 'https://www.linkedin.com/in/eric-quevedo/'
+    },
+    {
+      title: 'Learn',
+      description: 'Lee mis artículos y reflexiones en Medium',
+      icon: 'book',
+      targetId: 'medium',
+      isExternal: true,
+      url: 'https://medium.com/@ericquevedo'
+    },
+    {
+      title: 'X',
+      description: 'Sígueme en X para actualizaciones y pensamientos',
+      icon: 'x',
+      targetId: 'twitter',
+      isExternal: true,
+      url: 'https://x.com/ericquevedo'
+    }
+  ];
   
-  function scrollToContact() {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  function downloadResume() {
+    // Crear un enlace temporal para descargar el PDF
+    const link = document.createElement('a');
+    link.href = '/resume-eric-quevedo.pdf';
+    link.download = 'Eric-Quevedo-Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 </script>
 
-<section id="hero" class="min-h-screen flex flex-col justify-center container-padding relative">
-  <div class="max-w-4xl mx-auto text-center">
+<section id="hero" class="min-h-screen flex flex-col justify-center container-padding relative overflow-hidden">
+  <!-- Video de fondo con efecto de desenfoque -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline
+      class="absolute w-full h-full object-cover scale-110 blur-sm"
+    >
+      <source src="/Create_a_webpage_202507232303.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-white/60 to-white/80 dark:from-gray-900/60 dark:to-gray-900/80 backdrop-blur-xl"></div>
+  </div>
+  
+  <div class="max-w-6xl mx-auto text-center relative z-10">
     {#if titleVisible}
-      <h1 
-        in:fly={{ y: 30, duration: 600 }}
-        class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-6"
-      >
-        {profile.name}
-      </h1>
-    {/if}
-    
-    {#if subtitleVisible}
-      <div in:fade={{ duration: 600, delay: 100 }} class="mb-8">
-        <p class="text-xl sm:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 mb-2">
+      <div in:fly={{ y: 30, duration: 600 }} class="mb-16">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+          {profile.name}
+        </h1>
+        <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
           {profile.title}
-        </p>
-        <p class="text-lg sm:text-xl text-blue-600 dark:text-blue-400 font-medium">
-          {profile.focus}
         </p>
       </div>
     {/if}
     
-    {#if buttonsVisible}
-      <div in:fade={{ duration: 600, delay: 200 }} class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-        <Button variant="primary" size="lg" onclick={scrollToProjects}>
-          Ver Proyectos
-        </Button>
-        <Button variant="secondary" size="lg" onclick={scrollToContact}>
-          Contactar
-        </Button>
+    {#if cardsVisible}
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto mb-12">
+        {#each navigationSections as section, index}
+          <NavigationCard
+            title={section.title}
+            description={section.description}
+            icon={section.icon}
+            targetId={section.targetId}
+            delay={index * 150}
+            isExternal={section.isExternal}
+            url={section.url}
+          />
+        {/each}
+      </div>
+      
+      <!-- Resume Button -->
+      <div 
+        in:fly={{ y: 20, duration: 600, delay: 600 }}
+        class="flex justify-center"
+      >
+        <button
+          onclick={downloadResume}
+          class="group relative bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 rounded-lg p-4 transition-all duration-300 hover:bg-white/20 dark:hover:bg-gray-800/30 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:scale-105 min-w-[160px]"
+          aria-label="Descargar mi currículum en PDF"
+        >
+          <div class="flex items-center gap-3">
+            <div class="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              My Resume
+            </h3>
+          </div>
+        </button>
       </div>
     {/if}
   </div>
@@ -67,8 +133,8 @@
   <!-- Scroll indicator -->
   {#if scrollIndicatorVisible}
     <div 
-      in:fade={{ duration: 600, delay: 300 }}
-      class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+      in:fade={{ duration: 600, delay: 400 }}
+      class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10"
     >
       <button 
         onclick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
@@ -82,20 +148,3 @@
     </div>
   {/if}
 </section>
-
-<style lang="postcss">
-  @keyframes bounce {
-    0%, 20%, 53%, 80%, 100% {
-      transform: translate3d(0,0,0);
-    }
-    40%, 43% {
-      transform: translate3d(0,-30px,0);
-    }
-    70% {
-      transform: translate3d(0,-15px,0);
-    }
-    90% {
-      transform: translate3d(0,-4px,0);
-    }
-  }
-</style>
