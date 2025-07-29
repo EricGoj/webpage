@@ -66,7 +66,7 @@
 </script>
 
 <section id="contact" class="section-padding bg-gray-50 dark:bg-gray-900" bind:this={sectionRef}>
-	<div class="container-padding">
+	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-16">
 			<h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4"
 				class:animate-fade-in-up={isVisible}>

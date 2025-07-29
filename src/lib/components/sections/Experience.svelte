@@ -38,8 +38,8 @@
   }));
 </script>
 
-<section id="experience" class="section-padding container-padding bg-gray-50 dark:bg-gray-800/50" bind:this={sectionRef}>
-  <div class="max-w-4xl mx-auto">
+<section id="experience" class="section-padding bg-gray-50 dark:bg-gray-800/50" bind:this={sectionRef}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     {#if isVisible}
       <div in:fade={{ duration: 600 }}>
         <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">

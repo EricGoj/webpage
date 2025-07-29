@@ -36,8 +36,8 @@
   const mainTechnologies = ['Node.js', 'TypeScript', 'PostgreSQL', 'React', 'Svelte'];
 </script>
 
-<section id="about" class="section-padding container-padding" bind:this={sectionRef}>
-  <div class="max-w-6xl mx-auto">
+<section id="about" class="section-padding" bind:this={sectionRef}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     {#if isVisible}
       <div in:fade={{ duration: 600 }}>
         <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white mb-16">

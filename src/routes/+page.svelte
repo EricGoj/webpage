@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-		import { PROFILE } from '$lib/utils/constants';
+	import AnimatedTitle from '$lib/components/AnimatedTitle.svelte';
+	import { PROFILE } from '$lib/utils/constants';
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import Hero from '$lib/components/sections/Hero.svelte';
 	import About from '$lib/components/sections/About.svelte';
 	import Experience from '$lib/components/sections/Experience.svelte';
-	import Skills from '$lib/components/sections/Skills.svelte';
 	import Projects from '$lib/components/sections/Projects.svelte';
-	import GitHub from '$lib/components/sections/GitHub.svelte';
 	import Contact from '$lib/components/sections/Contact.svelte';
 
 	const profile = PROFILE;
@@ -29,16 +28,19 @@
 
 <div class="min-h-screen bg-white dark:bg-gray-900 transition-colors">
 	<Header />
-	
-	<main>
+
+	<main class="relative">
 		<Hero {profile} />
-		<About {profile} />
-		<Experience />
-		<Skills />
-		<Projects />
-		<GitHub />
-		<Contact />
+		
+		<!-- Secciones principales con mejor espaciado -->
+		<div class="relative z-10 bg-white dark:bg-gray-900">
+			<div class="max-w-7xl mx-auto">
+				<About {profile} />
+				<Experience />
+				<Contact />
+			</div>
+		</div>
 	</main>
-	
+
 	<Footer />
 </div>

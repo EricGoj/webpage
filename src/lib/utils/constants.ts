@@ -157,15 +157,22 @@ export const PROJECTS: Project[] = [
   }
 ];
 
-export const NAVIGATION: NavigationItem[] = [
-  { name: 'Inicio', href: '#hero' },
-  { name: 'Sobre mí', href: '#about' },
-  { name: 'Experiencia', href: '#experience' },
-  { name: 'Habilidades', href: '#skills' },
-  { name: 'Proyectos', href: '#projects' },
-  { name: 'GitHub', href: '#github' },
-  { name: 'Contacto', href: '#contact' }
-];
+export const NAVIGATION = {
+  es: [
+    { name: 'Inicio', href: '#hero' },
+    { name: 'Sobre mí', href: '#about' },
+    { name: 'Experiencia', href: '#experience' },
+    { name: 'Proyectos', href: '#projects' },
+    { name: 'Contacto', href: '#contact' }
+  ],
+  en: [
+    { name: 'Home', href: '#hero' },
+    { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' }
+  ]
+};
 
 export const GITHUB_USERNAME = 'ericquevedo';
 export const GITHUB_API_URL = 'https://api.github.com';

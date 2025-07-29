@@ -22,7 +22,7 @@
   const navigationSections = [
     {
       title: 'Work',
-      description: 'Explora mis proyectos y experiencia profesional',
+      description: 'Explora mi experiencia profesional y proyectos en los que trabajo',
       icon: 'briefcase',
       targetId: 'projects'
     },
@@ -40,7 +40,7 @@
       icon: 'book',
       targetId: 'medium',
       isExternal: true,
-      url: 'https://medium.com/@ericquevedo'
+      url: 'https://ericquevedo7.medium.com/'
     },
     {
       title: 'X',
@@ -48,7 +48,7 @@
       icon: 'x',
       targetId: 'twitter',
       isExternal: true,
-      url: 'https://x.com/ericquevedo'
+      url: 'https://x.com/EricQueveDev'
     }
   ];
   
@@ -64,8 +64,8 @@
 </script>
 
 <section id="hero" class="min-h-screen flex flex-col justify-center container-padding relative overflow-hidden">
-  <!-- Video de fondo con efecto de desenfoque -->
-  <div class="absolute inset-0 z-0 overflow-hidden">
+  <!-- Video de fondo con efecto de desenfoque que se extiende al header -->
+  <div class="fixed inset-0 z-0 overflow-hidden">
     <video 
       autoplay 
       muted 
@@ -75,13 +75,13 @@
     >
       <source src="/Create_a_webpage_202507232303.mp4" type="video/mp4">
     </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-white/60 to-white/80 dark:from-gray-900/60 dark:to-gray-900/80 backdrop-blur-xl"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-white/60 to-white/80 dark:from-gray-900/60 dark:to-gray-900/80 backdrop-blur-xl z-20"></div>
   </div>
   
-  <div class="max-w-6xl mx-auto text-center relative z-10">
+  <div class="max-w-6xl mx-auto text-center relative z-30">
     {#if titleVisible}
       <div in:fly={{ y: 30, duration: 600 }} class="mb-16">
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
           {profile.name}
         </h1>
         <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
