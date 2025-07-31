@@ -31,10 +31,10 @@
 
 <header class="absolute top-0 left-0 right-0 z-50 p-4">
 	<nav class="max-w-4xl mx-auto bg-white/10 dark:bg-gray-900/10 backdrop-blur-lg border border-white/20 dark:border-gray-700/20 rounded-2xl px-6">
-		<div class="flex items-center justify-center md:justify-between h-16">
+		<div class="flex items-center justify-between h-16">
 
-			<!-- Desktop Navigation -->
-			<div class="hidden md:block">
+			<!-- Desktop Navigation - Centered -->
+			<div class="hidden md:flex flex-1 justify-center">
 				<div class="flex items-baseline space-x-8">
 					{#each NAVIGATION[$language] as item}
 						<button
@@ -46,6 +46,9 @@
 					{/each}
 				</div>
 			</div>
+
+			<!-- Spacer for mobile to center language toggle -->
+			<div class="md:hidden flex-1"></div>
 
 			<!-- Language Toggle & Mobile Menu Button -->
 			<div class="flex items-center space-x-4">

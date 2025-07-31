@@ -4,16 +4,16 @@ export const PROFILE: ProfileData = {
   name: 'Eric Quevedo',
   title: 'Building software from Argentina 🇦🇷',
   focus: 'Full Stack Developer',
-  email: 'eric@example.com',
-  location: 'Remote',
-  bio: 'Desarrollador Full Stack especializado en backend con experiencia en arquitecturas escalables y APIs robustas. Apasionado por crear soluciones eficientes que resuelvan problemas reales.',
-  yearsOfExperience: 5
+  email: 'ericqdev7@gmail.com',
+  location: 'Buenos Aires, Argentina',
+  bio: 'Software Eng. creando soluciones escalables y eficientes con tecnología de vanguardia. Me gustan los desafios e innovar con nuevas tecnologías. Aspiro a ser Architect IA Engineer',
+  yearsOfExperience: 3
 };
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'GitHub',
-    url: 'https://github.com/ericquevedo',
+    url: 'https://github.com/EricGoj',
     icon: 'github',
     username: 'ericquevedo'
   },
@@ -64,49 +64,51 @@ export const SKILLS: Skill[] = [
 export const EXPERIENCE: Experience[] = [
   {
     id: '1',
-    company: 'Tech Startup',
-    role: 'Senior Full Stack Developer',
-    period: '2022 - Presente',
-    startDate: '2022-01',
+    company: 'NTT DATA',
+    role: 'SSR Software Engineer',
+    period: '2024 - Presente',
+    startDate: '2024-12',
     current: true,
     achievements: [
-      'Desarrollé una API REST que maneja 10M+ requests diarios',
-      'Implementé arquitectura de microservicios reduciendo latencia en 40%',
-      'Lideré equipo de 4 desarrolladores en migración a TypeScript'
+      'Desarrollo y mantenimiento a microservicios',
+      'Mejoras de perfomance aplicando operaciones asincronicas e implementando patrones de diseño',
+      'Migraciones a nuevas tecnologicas aplicando buenas practicas'
     ],
-    technologies: ['Node.js', 'TypeScript', 'PostgreSQL', 'Docker', 'AWS'],
+    technologies: ['Java', 'Angular', 'Oracle', 'Docker', 'OpenShift'],
     location: 'Remote'
   },
   {
     id: '2',
-    company: 'Digital Agency',
-    role: 'Full Stack Developer',
-    period: '2020 - 2022',
-    startDate: '2020-03',
-    endDate: '2022-01',
+    company: 'CDT Solutions',
+    role: 'Backend Developer',
+    period: '2024 - 2024',
+    startDate: '2024-03',
+    endDate: '2024-12',
     current: false,
     achievements: [
-      'Construí 15+ aplicaciones web para clientes enterprise',
-      'Optimicé performance de aplicaciones existentes en 60%',
-      'Implementé CI/CD pipelines reduciendo deployment time en 80%'
+      'Migraciones de aplicaciones legacy a microservicios',
+      'Actualizacion de microservicios de Java 17 a Java 21, aplicando las ventajas de las nuevas versiones',
+      'Mejora en pipeline CI/CD reduciendo deployment time',
+      'Documentacion precisa sobre rendimiento de microservicios utilizando herramientas como Grafana y Prometheus para medir metricas'
     ],
-    technologies: ['React', 'Node.js', 'MongoDB', 'GraphQL', 'Vercel'],
+    technologies: ['Java', 'Gitlab', 'GCP', 'GKE', 'Istio'],
     location: 'Hybrid'
   },
   {
     id: '3',
-    company: 'Freelance',
-    role: 'Web Developer',
-    period: '2019 - 2020',
-    startDate: '2019-01',
-    endDate: '2020-03',
+    company: 'Besysoft',
+    role: 'Jr Sofware Developer',
+    period: '2022 - 2024',
+    startDate: '2022-01',
+    endDate: '2024-03',
     current: false,
     achievements: [
-      'Desarrollé 20+ sitios web para pequeñas empresas',
-      'Implementé soluciones e-commerce aumentando ventas en 150%',
+      'Desarrollé e implemente nuevas mejoras a aplicaciones Web',
+      'Integracion de servicios externos para facturacion',
+      'Implementacion de modulo de seguridad open source para autenticacion de usuarios. Keycloak',
       'Creé sistema de gestión interno reduciendo tiempo de trabajo en 50%'
     ],
-    technologies: ['JavaScript', 'PHP', 'MySQL', 'WordPress', 'CSS'],
+    technologies: ['Java', 'Angular', 'PostgresSQL', 'BPM', 'AWS','Docker'],
     location: 'Remote'
   }
 ];
@@ -162,14 +164,12 @@ export const NAVIGATION = {
     { name: 'Inicio', href: '#hero' },
     { name: 'Sobre mí', href: '#about' },
     { name: 'Experiencia', href: '#experience' },
-    { name: 'Proyectos', href: '#projects' },
     { name: 'Contacto', href: '#contact' }
   ],
   en: [
     { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' }
   ]
 };

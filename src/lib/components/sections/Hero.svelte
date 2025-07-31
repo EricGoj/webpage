@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { fade, fly } from 'svelte/transition';
+  import { fly } from 'svelte/transition';
   import NavigationCard from '$lib/components/ui/NavigationCard.svelte';
+  import { language } from '$lib/stores/language';
+  import { getTranslations } from '$lib/i18n/translations';
   import type { ProfileData } from '$lib/types/portfolio';
   
   interface Props {
@@ -9,6 +11,16 @@
   }
   
   let { profile }: Props = $props();
+  let currentLang = $state('es');
+  let t = $derived(getTranslations(currentLang as 'en' | 'es'));
+
+  // Subscribe to language changes
+  $effect(() => {
+    const unsubscribe = language.subscribe((lang) => {
+      currentLang = lang;
+    });
+    return unsubscribe;
+  });
   let titleVisible = $state(false);
   let cardsVisible = $state(false);
   let scrollIndicatorVisible = $state(false);
@@ -63,29 +75,25 @@
   }
 </script>
 
-<section id="hero" class="min-h-screen flex flex-col justify-center container-padding relative overflow-hidden">
-  <!-- Video de fondo con efecto de desenfoque que se extiende al header -->
+<section id="hero" class="min-h-screen flex flex-col justify-start pt-24 container-padding relative overflow-hidden">
+  <!-- Imagen de fondo con efecto de desenfoque que se extiende al header -->
   <div class="fixed inset-0 z-0 overflow-hidden">
-    <video 
-      autoplay 
-      muted 
-      loop 
-      playsinline
-      class="absolute w-full h-full object-cover scale-110 blur-sm"
-    >
-      <source src="/Create_a_webpage_202507232303.mp4" type="video/mp4">
-    </video>
+    <img 
+      src="/enver-guclu-XVYUUcNZIis-unsplash.jpg" 
+      alt="Background"
+      class="absolute w-full h-full object-cover scale-110 blur-[1px]"
+    />
     <div class="absolute inset-0 bg-gradient-to-b from-white/60 to-white/80 dark:from-gray-900/60 dark:to-gray-900/80 backdrop-blur-xl z-20"></div>
   </div>
   
   <div class="max-w-6xl mx-auto text-center relative z-30">
     {#if titleVisible}
-      <div in:fly={{ y: 30, duration: 600 }} class="mb-16">
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
-          {profile.name}
+      <div in:fly={{ y: 30, duration: 600 }} class="mb-12">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+          {t.hero.title}
         </h1>
         <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
-          {profile.title}
+          {t.hero.subtitle}
         </p>
       </div>
     {/if}
@@ -113,7 +121,7 @@
         <button
           onclick={downloadResume}
           class="group relative bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 rounded-lg p-4 transition-all duration-300 hover:bg-white/20 dark:hover:bg-gray-800/30 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:scale-105 min-w-[160px]"
-          aria-label="Descargar mi currículum en PDF"
+          aria-label={t.hero.downloadCV}
         >
           <div class="flex items-center gap-3">
             <div class="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -122,7 +130,7 @@
               </svg>
             </div>
             <h3 class="text-lg font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              My Resume
+              {t.hero.downloadCV}
             </h3>
           </div>
         </button>
@@ -133,7 +141,7 @@
   <!-- Scroll indicator -->
   {#if scrollIndicatorVisible}
     <div 
-      in:fade={{ duration: 600, delay: 400 }}
+      in:fly={{ y: 20, duration: 600, delay: 400 }}
       class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10"
     >
       <button 

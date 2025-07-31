@@ -1,14 +1,20 @@
 <script lang="ts">
 	import { SOCIAL_LINKS, PROFILE } from '$lib/utils/constants';
+	import { language } from '$lib/stores/language';
+	import { getTranslations } from '$lib/i18n/translations';
+	import { derived } from 'svelte/store';
 
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 
 	const currentYear = new Date().getFullYear();
+	
+	// Reactive translations
+	const t = derived(language, ($language) => getTranslations($language));
 </script>
 
-<footer class="bg-gray-900 text-white">
+<footer class="bg-gray-900 text-white min-h-[200px] border-t-4 border-red-500">
 	<div class="container-padding py-12">
 		<div class="grid md:grid-cols-3 gap-8">
 			<!-- About Section -->
@@ -24,26 +30,26 @@
 
 			<!-- Quick Links -->
 			<div>
-				<h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+				<h3 class="text-xl font-semibold mb-4">{$t.footer.quickLinks}</h3>
 				<ul class="space-y-2">
 					<li>
 						<a href="#about" class="text-gray-300 hover:text-white transition-colors">
-							About
+							{$t.nav.about}
 						</a>
 					</li>
 					<li>
 						<a href="#experience" class="text-gray-300 hover:text-white transition-colors">
-							Experience
+							{$t.nav.experience}
 						</a>
 					</li>
 					<li>
 						<a href="#projects" class="text-gray-300 hover:text-white transition-colors">
-							Projects
+							{$t.nav.projects}
 						</a>
 					</li>
 					<li>
 						<a href="#contact" class="text-gray-300 hover:text-white transition-colors">
-							Contact
+							{$t.nav.contact}
 						</a>
 					</li>
 				</ul>
@@ -51,7 +57,7 @@
 
 			<!-- Social Links -->
 			<div>
-				<h3 class="text-xl font-semibold mb-4">Connect</h3>
+				<h3 class="text-xl font-semibold mb-4">{$t.footer.connect}</h3>
 				<div class="flex space-x-4 mb-4">
 					{#each SOCIAL_LINKS as social}
 						<a
@@ -80,7 +86,7 @@
 					{/each}
 				</div>
 				<p class="text-gray-400 text-sm">
-					Let's build something amazing together!
+					{$t.footer.buildTogether}
 				</p>
 			</div>
 		</div>
@@ -88,12 +94,12 @@
 		<!-- Bottom Section -->
 		<div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
 			<p class="text-gray-400 text-sm mb-4 md:mb-0">
-				© {currentYear} {PROFILE.name}. All rights reserved.
+				© {currentYear} {PROFILE.name}. {$t.footer.rights}
 			</p>
 			
 			<div class="flex items-center space-x-6">
 				<p class="text-gray-400 text-sm">
-					Built with SvelteKit & Tailwind CSS
+					{$t.footer.builtWith}
 				</p>
 				<button
 					on:click={scrollToTop}

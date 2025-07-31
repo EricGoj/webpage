@@ -2,10 +2,22 @@
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
   import Timeline from '$lib/components/ui/Timeline.svelte';
+  import { language } from '$lib/stores/language';
+  import { getTranslations } from '$lib/i18n/translations';
   import { EXPERIENCE } from '$lib/utils/constants';
   
   let sectionRef: HTMLElement;
   let isVisible = $state(false);
+  let currentLang = $state('es');
+	let t = $derived(getTranslations(currentLang as 'en' | 'es'));
+  
+  // Subscribe to language changes
+  $effect(() => {
+    const unsubscribe = language.subscribe((lang) => {
+      currentLang = lang;
+    });
+    return unsubscribe;
+  });
   
   onMount(() => {
     const observer = new IntersectionObserver(
@@ -43,10 +55,10 @@
     {#if isVisible}
       <div in:fade={{ duration: 600 }}>
         <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
-          Experiencia Profesional
+          {t.experience.title}
         </h2>
         <p class="text-lg text-gray-600 dark:text-gray-300 text-center mb-16 max-w-2xl mx-auto">
-          Mi trayectoria profesional desarrollando soluciones tecnológicas innovadoras
+          {t.experience.subtitle}
         </p>
         
         <div in:fade={{ duration: 600, delay: 300 }}>

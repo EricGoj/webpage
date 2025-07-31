@@ -1,12 +1,26 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import type { ContactForm } from '$lib/types/portfolio';
 	import { scrollAnimation } from '$lib/utils/animations';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Card from '$lib/components/ui/Card.svelte';
+	import { language } from '$lib/stores/language';
+	import { getTranslations } from '$lib/i18n/translations';
+	import { SOCIAL_LINKS } from '$lib/utils/constants';
 
 	let sectionRef: HTMLElement;
 	let isVisible = $state(false);
+	let currentLang = $state('es');
+	let t = $derived(getTranslations(currentLang as 'en' | 'es'));
+	
+	// Subscribe to language changes
+	$effect(() => {
+		const unsubscribe = language.subscribe((lang) => {
+			currentLang = lang;
+		});
+		return unsubscribe;
+	});
 
 	// Form state using Svelte 5 runes
 	let form = $state<ContactForm>({
@@ -70,12 +84,12 @@
 		<div class="text-center mb-16">
 			<h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4"
 				class:animate-fade-in-up={isVisible}>
-				Get In Touch
+				{t.contact.title}
 			</h2>
 			<p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
 				class:animate-fade-in-up={isVisible}
 				style:animation-delay="0.1s">
-				I'm always open to discussing new opportunities and interesting projects.
+				{t.contact.subtitle}
 			</p>
 		</div>
 
@@ -86,11 +100,10 @@
 				style:animation-delay="0.2s">
 				<div>
 					<h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-						Let's Connect
+						{t.contact.letsConnect}
 					</h3>
 					<p class="text-gray-600 dark:text-gray-300 mb-8">
-						Whether you have a project in mind, want to collaborate, or just want to say hello, 
-						I'd love to hear from you.
+						{t.contact.description}
 					</p>
 				</div>
 
@@ -102,7 +115,7 @@
 							</svg>
 						</div>
 						<div>
-							<h4 class="font-semibold text-gray-900 dark:text-white">Email</h4>
+							<h4 class="font-semibold text-gray-900 dark:text-white">{t.contact.email}</h4>
 							<p class="text-gray-600 dark:text-gray-300">hello@example.com</p>
 						</div>
 					</div>
@@ -115,8 +128,8 @@
 							</svg>
 						</div>
 						<div>
-							<h4 class="font-semibold text-gray-900 dark:text-white">Location</h4>
-							<p class="text-gray-600 dark:text-gray-300">Remote / Worldwide</p>
+							<h4 class="font-semibold text-gray-900 dark:text-white">{t.contact.location}</h4>
+							<p class="text-gray-600 dark:text-gray-300">{t.contact.locationValue}</p>
 						</div>
 					</div>
 
@@ -140,7 +153,7 @@
 					<form onsubmit={handleSubmit} class="space-y-6">
 					<div>
 						<label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-							Name *
+							{t.contact.name} *
 						</label>
 						<input
 							id="name"
@@ -148,13 +161,13 @@
 							bind:value={form.name}
 							required
 							class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
-							placeholder="Your name"
+							placeholder={t.contact.namePlaceholder}
 						/>
 					</div>
 
 					<div>
 						<label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-							Email *
+							{t.contact.email} *
 						</label>
 						<input
 							id="email"
@@ -162,13 +175,13 @@
 							bind:value={form.email}
 							required
 							class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
-							placeholder="your.email@example.com"
+							placeholder={t.contact.emailPlaceholder}
 						/>
 					</div>
 
 					<div>
 						<label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-							Subject *
+							{t.contact.subject} *
 						</label>
 						<input
 							id="subject"
@@ -176,13 +189,13 @@
 							bind:value={form.subject}
 							required
 							class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
-							placeholder="Project inquiry, collaboration, etc."
+							placeholder={t.contact.subjectPlaceholder}
 						/>
 					</div>
 
 					<div>
 						<label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-							Message *
+							{t.contact.message} *
 						</label>
 						<textarea
 							id="message"
@@ -190,20 +203,20 @@
 							required
 							rows="5"
 							class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors resize-none"
-							placeholder="Tell me about your project or just say hello..."
+							placeholder={t.contact.messagePlaceholder}
 						></textarea>
 					</div>
 
 					{#if submitStatus === 'success'}
 						<div class="p-4 bg-green-100 dark:bg-green-900 border border-green-200 dark:border-green-700 rounded-lg">
 							<p class="text-green-800 dark:text-green-200 font-medium">
-								✓ Message sent successfully! I'll get back to you soon.
+								✓ {t.contact.successMessage}
 							</p>
 						</div>
 					{:else if submitStatus === 'error'}
 						<div class="p-4 bg-red-100 dark:bg-red-900 border border-red-200 dark:border-red-700 rounded-lg">
 							<p class="text-red-800 dark:text-red-200 font-medium">
-								✗ Something went wrong. Please try again.
+								✗ {t.contact.errorMessage}
 							</p>
 						</div>
 					{/if}
@@ -216,7 +229,7 @@
 						disabled={!isFormValid || isSubmitting}
 						loading={isSubmitting}
 					>
-						{isSubmitting ? 'Sending...' : 'Send Message'}
+						{isSubmitting ? t.contact.sending : t.contact.sendMessage}
 					</Button>
 					</form>
 				</Card>
