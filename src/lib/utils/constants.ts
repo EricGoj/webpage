@@ -163,14 +163,12 @@ export const NAVIGATION = {
   es: [
     { name: 'Inicio', href: '#hero' },
     { name: 'Sobre mí', href: '#about' },
-    { name: 'Experiencia', href: '#experience' },
-    { name: 'Contacto', href: '#contact' }
+    { name: 'Experiencia', href: '#experience' }
   ],
   en: [
     { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Experience', href: '#experience' }
   ]
 };
 

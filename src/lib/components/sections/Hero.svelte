@@ -31,38 +31,38 @@
     setTimeout(() => scrollIndicatorVisible = true, 1200);
   });
   
-  const navigationSections = [
+  const navigationSections = $derived([
     {
-      title: 'Work',
-      description: 'Explora mi experiencia profesional y proyectos en los que trabajo',
+      title: t.hero.cards.work.title,
+      description: t.hero.cards.work.description,
       icon: 'briefcase',
-      targetId: 'projects'
+      targetId: 'experience'
     },
     {
-      title: 'LinkedIn',
-      description: 'Conecta conmigo profesionalmente',
+      title: t.hero.cards.linkedin.title,
+      description: t.hero.cards.linkedin.description,
       icon: 'linkedin',
       targetId: 'linkedin',
       isExternal: true,
       url: 'https://www.linkedin.com/in/eric-quevedo/'
     },
     {
-      title: 'Learn',
-      description: 'Lee mis artículos y reflexiones en Medium',
+      title: t.hero.cards.learn.title,
+      description: t.hero.cards.learn.description,
       icon: 'book',
       targetId: 'medium',
       isExternal: true,
       url: 'https://ericquevedo7.medium.com/'
     },
     {
-      title: 'X',
-      description: 'Sígueme en X para actualizaciones y pensamientos',
+      title: t.hero.cards.x.title,
+      description: t.hero.cards.x.description,
       icon: 'x',
       targetId: 'twitter',
       isExternal: true,
       url: 'https://x.com/EricQueveDev'
     }
-  ];
+  ]);
   
   function downloadResume() {
     // Crear un enlace temporal para descargar el PDF
@@ -124,10 +124,8 @@
           aria-label={t.hero.downloadCV}
         >
           <div class="flex items-center gap-3">
-            <div class="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+            <div class="text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+              <img src="/b5a745_a855af44139e4768b407a8042f9d9670~mv2.avif" alt="Curriculum" class="w-8 h-8 object-contain" style="filter: hue-rotate(220deg) saturate(2) brightness(0.8);" />
             </div>
             <h3 class="text-lg font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               {t.hero.downloadCV}

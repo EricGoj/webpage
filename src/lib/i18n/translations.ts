@@ -13,6 +13,24 @@ export interface Translations {
     subtitle: string;
     downloadCV: string;
     viewProjects: string;
+    cards: {
+      work: {
+        title: string;
+        description: string;
+      };
+      linkedin: {
+        title: string;
+        description: string;
+      };
+      learn: {
+        title: string;
+        description: string;
+      };
+      x: {
+        title: string;
+        description: string;
+      };
+    };
   };
   
   // About section
@@ -83,13 +101,31 @@ export const translations: Record<'es' | 'en', Translations> = {
       title: 'Eric Quevedo',
       subtitle: 'Building Software desde Argentina 🇦🇷',
       downloadCV: 'Mi Currículum',
-      viewProjects: 'Ver Proyectos'
+      viewProjects: 'Ver Proyectos',
+      cards: {
+        work: {
+          title: 'Trabajo',
+          description: 'Explora mi experiencia profesional y proyectos en los que trabajo'
+        },
+        linkedin: {
+          title: 'LinkedIn',
+          description: 'Conecta conmigo profesionalmente'
+        },
+        learn: {
+          title: 'Aprender',
+          description: 'Lee mis artículos y reflexiones en Medium'
+        },
+        x: {
+          title: 'X',
+          description: 'Sígueme en X para actualizaciones y pensamientos'
+        }
+      }
     },
     about: {
       title: 'Sobre Mí',
       yearsExperience: 'Años de Experiencia',
       projectsCompleted: 'Proyectos Completados',
-      bio: 'Software dev, apasionado por aplicar tecnologías de vanguardia para resolver problemas del mundo real. Cuento con expereriencia en sistemas escalables y llevar los límites del rendimiento al máximo. Me importa escribir código limpio y eficiente, y encontrar formas inteligentes de lograr que los sistemas no solo funcionen, sino que funcionen mejor. Tengo una curiosidad constante y me encanta enfrentar desafíos técnicos, sobre todo cuando implican aprender algo nuevo o superar límites establecidos.',
+      bio: 'Software Engineer, apasionado por aplicar tecnologías de vanguardia para resolver problemas del mundo real. Cuento con expereriencia en sistemas escalables y llevar los límites del rendimiento al máximo. Me importa escribir código limpio y eficiente, y encontrar formas inteligentes de lograr que los sistemas no solo funcionen, sino que funcionen mejor. Tengo una curiosidad constante y me encanta enfrentar desafíos técnicos, sobre todo cuando implican aprender algo nuevo o superar límites establecidos.',
       mainTechnologies: 'Tecnologías Principales'
     },
     experience: {
@@ -142,7 +178,25 @@ export const translations: Record<'es' | 'en', Translations> = {
       title: 'Eric Quevedo',
       subtitle: 'Building Software from 🇦🇷, trying to make a difference',
       downloadCV: 'My Resume',
-      viewProjects: 'View Projects'
+      viewProjects: 'View Projects',
+      cards: {
+        work: {
+          title: 'Work',
+          description: 'Explore my professional experience and projects I work on'
+        },
+        linkedin: {
+          title: 'LinkedIn',
+          description: 'Connect with me professionally'
+        },
+        learn: {
+          title: 'Learn',
+          description: 'Read my articles and thoughts on Medium'
+        },
+        x: {
+          title: 'X',
+          description: 'Follow me on X for updates and thoughts'
+        }
+      }
     },
     about: {
       title: 'About Me',

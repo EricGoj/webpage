@@ -20,7 +20,7 @@ function createLanguageStore(): LanguageStore {
       return saved as Language;
     }
     
-    return 'es'; // Default to Spanish
+    return 'en'; // Default to English
   };
 
   const { subscribe, set, update } = writable(getInitialLanguage());

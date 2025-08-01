@@ -8,7 +8,7 @@
 	import About from '$lib/components/sections/About.svelte';
 	import Experience from '$lib/components/sections/Experience.svelte';
 	import Projects from '$lib/components/sections/Projects.svelte';
-	import Contact from '$lib/components/sections/Contact.svelte';
+
 
 	const profile = PROFILE;
 
@@ -33,11 +33,10 @@
 		<Hero {profile} />
 		
 		<!-- Secciones principales con mejor espaciado -->
-		<div class="relative z-10 bg-white dark:bg-gray-900">
+		<div class="relative bg-white dark:bg-gray-900">
 			<div class="max-w-7xl mx-auto">
 				<About {profile} />
 				<Experience />
-				<Contact />
 			</div>
 		</div>
 	</main>
