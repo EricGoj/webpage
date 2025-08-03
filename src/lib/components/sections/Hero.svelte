@@ -115,7 +115,7 @@
       icon: 'x',
       targetId: 'twitter',
       isExternal: true,
-      url: 'https://x.com/EricQueveDev'
+      url: 'https://x.com/EriccQuevedo'
     },
     {
       title: 'GitHub',
