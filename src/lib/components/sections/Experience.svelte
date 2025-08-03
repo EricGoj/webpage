@@ -50,7 +50,7 @@
   }));
 </script>
 
-<section id="experience" class="section-padding bg-gray-50 dark:bg-gray-800/50" bind:this={sectionRef}>
+<section id="experience" class="section-padding my-16 p-8 md:p-12 bg-white/10 dark:bg-black/20 backdrop-blur-md rounded-2xl shadow-lg border border-white/10" bind:this={sectionRef}>
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     {#if isVisible}
       <div in:fade={{ duration: 600 }}>

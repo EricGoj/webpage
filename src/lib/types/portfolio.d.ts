@@ -6,6 +6,7 @@ export interface ProfileData {
   location: string;
   bio: string;
   yearsOfExperience: number;
+  projectsCompleted: number;
   avatar?: string;
 }
 

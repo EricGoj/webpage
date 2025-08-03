@@ -1,25 +1,6 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
-  
-  interface Props {
-    title: string;
-    description: string;
-    icon: string;
-    targetId: string;
-    delay?: number;
-    isExternal?: boolean;
-    url?: string;
-  }
-  
-  let { title, description, icon, targetId, delay = 0, isExternal = false, url }: Props = $props();
-  
-  function handleClick() {
-    if (isExternal && url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    } else {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
+  import GithubIcon from '$lib/components/ui/GithubIcon.svelte';
   
   function getIconSVG(iconName: string) {
     const icons = {
@@ -42,27 +23,57 @@
       code: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>`,
+      document: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>`,
       mail: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>`
     };
     return icons[iconName as keyof typeof icons] || icons.user;
   }
+  
+  interface Props {
+    title: string;
+    description: string;
+    icon: string;
+    targetId: string;
+    delay?: number;
+    isExternal?: boolean;
+    url?: string;
+    class?: string;
+  }
+  
+  let { title, description, icon, targetId, delay = 0, isExternal = false, url, class: extraClass = '' }: Props = $props();
+  
+  function handleClick() {
+    if (isExternal && url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  
+
 </script>
 
 <button
   in:fly={{ y: 30, duration: 600, delay }}
   onclick={handleClick}
-  class="group relative bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm border border-white/20 dark:border-gray-700/30 rounded-xl p-4 transition-all duration-300 hover:bg-white/20 dark:hover:bg-gray-800/30 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:scale-105"
+  class="group relative flex h-full flex-col bg-white/10 p-4 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:shadow-xl focus:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500/50 dark:bg-gray-800/20 dark:border-gray-700/30 dark:hover:bg-gray-800/30 border border-white/20 rounded-xl {extraClass}"
   aria-label={isExternal ? `Abrir ${title} en nueva pestaña` : `Navegar a sección ${title}`}
 >
   <!-- Icon -->
   <div class="text-blue-600 dark:text-blue-400 mb-2 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors">
-    {@html getIconSVG(icon)}
+    {#if icon === 'github'}
+      <GithubIcon />
+    {:else}
+      {@html getIconSVG(icon)}
+    {/if}
   </div>
   
   <!-- Content -->
-  <div class="text-left">
+  <div class="flex-grow text-left">
     <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
       {title}
     </h3>

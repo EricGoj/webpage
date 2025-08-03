@@ -11,7 +11,7 @@ export interface Translations {
   hero: {
     title: string;
     subtitle: string;
-    downloadCV: string;
+
     viewProjects: string;
     cards: {
       work: {
@@ -27,6 +27,14 @@ export interface Translations {
         description: string;
       };
       x: {
+        title: string;
+        description: string;
+      };
+      resume: {
+        title: string;
+        description: string;
+      };
+      github: {
         title: string;
         description: string;
       };
@@ -100,7 +108,7 @@ export const translations: Record<'es' | 'en', Translations> = {
     hero: {
       title: 'Eric Quevedo',
       subtitle: 'Building Software desde Argentina 🇦🇷',
-      downloadCV: 'Mi Currículum',
+
       viewProjects: 'Ver Proyectos',
       cards: {
         work: {
@@ -118,6 +126,14 @@ export const translations: Record<'es' | 'en', Translations> = {
         x: {
           title: 'X',
           description: 'Sígueme en X para actualizaciones y pensamientos'
+        },
+        resume: {
+          title: 'Currículum',
+          description: 'Descarga mi currículum completo en formato PDF'
+        },
+        github: {
+          title: 'GitHub',
+          description: 'Explora mis repositorios y contribuciones'
         }
       }
     },
@@ -177,7 +193,7 @@ export const translations: Record<'es' | 'en', Translations> = {
     hero: {
       title: 'Eric Quevedo',
       subtitle: 'Building Software from 🇦🇷, trying to make a difference',
-      downloadCV: 'My Resume',
+
       viewProjects: 'View Projects',
       cards: {
         work: {
@@ -190,11 +206,19 @@ export const translations: Record<'es' | 'en', Translations> = {
         },
         learn: {
           title: 'Learn',
-          description: 'Read my articles and thoughts on Medium'
+          description: 'Read my articles and reflections on Medium'
+        },
+        github: {
+          title: 'GitHub',
+          description: 'Explore my repositories and contributions'
         },
         x: {
           title: 'X',
           description: 'Follow me on X for updates and thoughts'
+        },
+        resume: {
+          title: 'Resume',
+          description: 'Download my full resume in PDF format'
         }
       }
     },

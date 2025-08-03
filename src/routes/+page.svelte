@@ -26,18 +26,16 @@
 	<meta name="twitter:description" content="Full Stack Developer specializing in modern web technologies." />
 </svelte:head>
 
-<div class="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+<div class="min-h-screen transition-colors">
 	<Header />
 
 	<main class="relative">
 		<Hero {profile} />
 		
 		<!-- Secciones principales con mejor espaciado -->
-		<div class="relative bg-white dark:bg-gray-900">
-			<div class="max-w-7xl mx-auto">
-				<About {profile} />
-				<Experience />
-			</div>
+		<div class="max-w-7xl mx-auto">
+			<About {profile} />
+			<Experience />
 		</div>
 	</main>
 
