@@ -141,7 +141,7 @@ export const translations: Record<'es' | 'en', Translations> = {
       title: 'Sobre Mí',
       yearsExperience: 'Años de Experiencia',
       projectsCompleted: 'Proyectos Completados',
-      bio: 'Software Engineer, apasionado por aplicar tecnologías de vanguardia para resolver problemas del mundo real. Cuento con expereriencia en sistemas escalables y llevar los límites del rendimiento al máximo. Me importa escribir código limpio y eficiente, y encontrar formas inteligentes de lograr que los sistemas no solo funcionen, sino que funcionen mejor. Tengo una curiosidad constante y me encanta enfrentar desafíos técnicos, sobre todo cuando implican aprender algo nuevo o superar límites establecidos.',
+      bio: 'Soy un desarrollador de software especializado en desarrollo backend con experiencia en arquitectura de microservicios, tecnologías cloud y desarrollo de APIs. Destaco en proyectos técnicamente complejos donde implementar soluciones escalables y optimizar el rendimiento del sistema son esenciales. Actualmente mejoro mis habilidades y productividad aprovechando herramientas de GenAI para acelerar los flujos de trabajo de desarrollo y mejorar la calidad del código.',
       mainTechnologies: 'Tecnologías Principales'
     },
     experience: {
@@ -226,7 +226,7 @@ export const translations: Record<'es' | 'en', Translations> = {
       title: 'About Me',
       yearsExperience: 'Years of Experience',
       projectsCompleted: 'Projects Completed',
-      bio: 'I\'m a backend-focused Software Developer passionate about applying cutting-edge technologies to solve real-world problems. I enjoy building scalable systems and pushing performance limits to see how far they can go. I care deeply about writing clean, efficient code and finding smart ways to make systems not just work — but work better. I\'m naturally curious and love tackling technical challenges, especially when they offer a chance to learn something new or push boundaries.',
+      bio: 'I am a software developer specializing in backend development with expertise in microservices architecture, cloud technologies, and API development. I excel in technically complex projects where implementing scalable solutions and optimizing system performance are essential. Currently enhancing my skills and productivity by leveraging GenAI tools to accelerate development workflows and improve code quality.',
       mainTechnologies: 'Main Technologies'
     },
     experience: {

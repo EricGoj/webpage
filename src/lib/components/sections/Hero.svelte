@@ -131,7 +131,7 @@
       icon: 'document',
       targetId: 'resume',
       isExternal: true,
-      url: '/EricQuevedo_Desarrollador.pdf'
+      url: currentLang === 'es' ? '/eric-quevedo-cv-spanish.pdf' : '/eric-quevedo-cv-en.pdf'
     }
   ]);
   
