@@ -7,7 +7,8 @@ export const PROFILE: ProfileData = {
   email: 'ericqdev7@gmail.com',
   location: 'Buenos Aires, Argentina',
   bio: 'Software Eng. creando soluciones escalables y eficientes con tecnología de vanguardia. Me gustan los desafios e innovar con nuevas tecnologías. Aspiro a ser Architect IA Engineer',
-  yearsOfExperience: 3
+  yearsOfExperience: 3,
+  projectsCompleted: 0
 };
 
 export const SOCIAL_LINKS: SocialLink[] = [

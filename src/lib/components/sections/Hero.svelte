@@ -123,7 +123,7 @@
       icon: 'github',
       targetId: 'github',
       isExternal: true,
-      url: 'https://github.com/ericquevedof'
+      url: 'https://github.com/EricGoj'
     },
     {
       title: t.hero.cards.resume.title,

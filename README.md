@@ -1,33 +1,56 @@
-# sv
+# Eric Quevedo - Personal Portfolio
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is my personal portfolio, a place to showcase my professional experience, projects, and articles. The site is designed to be clean, modern, and fully responsive, with a focus on user experience and animations.
 
-## Creating a project
+## ✨ Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Interactive UI**: Smooth animations and transitions powered by `anime.js`.
+- **Internationalization (i18n)**: Support for English and Spanish, easily switchable.
+- **Responsive Design**: Looks great on all devices, from mobile to desktop.
+- **Dynamic CV Download**: Download the correct resume version based on the selected language.
+- **Dark Mode**: Sleek and modern dark theme.
 
-```sh
-# create a new project in the current directory
-npx sv create
+## 🛠️ Technologies Used
 
-# create a new project in my-app
-npx sv create my-app
-```
+- **Framework**: [SvelteKit](https://kit.svelte.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Anime.js](https://animejs.com/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Internationalization**: Custom solution using Svelte stores.
 
-## Developing
+## 🚀 Getting Started
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Prerequisites
 
-```sh
-npm run dev
+- [Node.js](https://nodejs.org/) (version 18 or higher)
+- [Docker](https://www.docker.com/) (optional, for containerized deployment)
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Development
 
-## Building
+1.  **Clone the repository:**
 
-To create a production version of your app:
+    ```sh
+    git clone https://github.com/your-username/your-repo-name.git
+    cd your-repo-name
+    ```
+
+2.  **Install dependencies:**
+
+    ```sh
+    npm install
+    ```
+
+3.  **Run the development server:**
+
+    ```sh
+    npm run dev
+    ```
+
+    The application will be available at `http://localhost:5173`.
+
+### Building for Production
+
+To create a production version of the app:
 
 ```sh
 npm run build
@@ -35,4 +58,18 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## 🐳 Running with Docker
+
+This project includes a `Dockerfile` and `docker-compose.yml` for easy containerization.
+
+1.  **Build and run the container:**
+
+    ```sh
+    docker-compose up --build
+    ```
+
+2.  The application will be available at `http://localhost:4173`.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
