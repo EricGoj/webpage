@@ -4,6 +4,7 @@
 
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { logger } from '$lib/utils/logger';
   
   interface Props {
     text: string;
@@ -67,7 +68,7 @@
     
     // Check if anime.js is loaded
     if (typeof anime === 'undefined') {
-      console.warn('anime.js not loaded, falling back to CSS animations');
+      logger.warn('anime.js not loaded in AnimatedText, using CSS fallback');
       // Fallback to simple CSS animation
       const targets = container.querySelectorAll(`.animated-${animationType.slice(0, -1)}`);
       targets.forEach((el: Element, index: number) => {

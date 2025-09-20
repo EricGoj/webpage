@@ -19,17 +19,6 @@ body {
 	}
 }
 
-.char {
-	display: inline-block;
-	opacity: 0;
-}
-
-.letter {
-	display: inline-block;
-	line-height: 1em;
-	will-change: transform;
-}
-
 /* Layout utilities */
 .section-padding {
 	padding-top: 5rem;

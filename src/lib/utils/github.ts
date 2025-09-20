@@ -1,4 +1,5 @@
 import type { GitHubRepo, GitHubStats } from '$lib/types/portfolio';
+import { logger } from '$lib/utils/logger';
 import { GITHUB_USERNAME, GITHUB_API_URL } from './constants';
 
 export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
@@ -16,7 +17,7 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
       .filter(repo => !repo.fork)
       .sort((a, b) => b.stargazers_count - a.stargazers_count);
   } catch (error) {
-    console.error('Error fetching GitHub repos:', error);
+    logger.error('Error fetching GitHub repos', error);
     return [];
   }
 }
@@ -27,7 +28,7 @@ export async function fetchPinnedRepos(): Promise<GitHubRepo[]> {
     const repos = await fetchGitHubRepos();
     return repos.slice(0, 6); // Return top 6 repos
   } catch (error) {
-    console.error('Error fetching pinned repos:', error);
+    logger.error('Error fetching pinned repos', error);
     return [];
   }
 }
@@ -57,7 +58,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
       contributionsThisYear: 0 // This would require GitHub GraphQL API
     };
   } catch (error) {
-    console.error('Error fetching GitHub stats:', error);
+    logger.error('Error fetching GitHub stats', error);
     return {
       totalRepos: 0,
       totalStars: 0,

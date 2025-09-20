@@ -9,6 +9,7 @@
   import { language } from '$lib/stores/language';
   import { getTranslations } from '$lib/i18n/translations';
   import { animationConfig } from '$lib/config/animations';
+  import { logger } from '$lib/utils/logger';
   import type { ProfileData } from '$lib/types/portfolio';
 
   interface Props {
@@ -30,7 +31,7 @@
   
   onMount(() => {
     if (typeof anime === 'undefined') {
-      console.error("anime.js not loaded, falling back to CSS.");
+      logger.warn('anime.js not loaded, falling back to CSS animations');
       startCSSAnimations();
       showTextAnimations = true;
       return;
@@ -135,16 +136,6 @@
       url: currentLang === 'es' ? '/eric-quevedo-cv-spanish.pdf' : '/eric-quevedo-cv-en.pdf'
     }
   ]);
-  
-  // No longer needed as NavigationCard handles external links
-  // function downloadResume() {
-  //   const link = document.createElement('a');
-  //   link.href = '/EricQuevedo_Desarrollador.pdf';
-  //   link.download = 'EricQuevedo_Desarrollador.pdf';
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // }
 </script>
 
 <section id="hero" class="min-h-screen flex flex-col justify-start pt-24 container-padding relative">
@@ -213,20 +204,15 @@
 </section>
 
 <style>
-  .profile-image, .scroll-indicator {
+  .profile-image {
     opacity: 0;
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-  .profile-image {
     transform: translateX(-100px);
   }
   :global(.navigation-card) {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-  .scroll-indicator {
-    transform: translateY(20px);
   }
   
   /* Add a subtle glow effect for the animated text */

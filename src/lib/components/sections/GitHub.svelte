@@ -4,8 +4,9 @@
   import Card from '$lib/components/ui/Card.svelte';
   import Badge from '$lib/components/ui/Badge.svelte';
   import Button from '$lib/components/ui/Button.svelte';
-  import { fetchGitHubStats, fetchPinnedRepos, getLanguageColor, formatRepoDate } from '$lib/utils/github';
-  import type { GitHubRepo, GitHubStats } from '$lib/types/portfolio';
+  import { fetchGitHubStats, fetchPinnedRepos } from '$lib/utils/github';
+  import { logger } from '$lib/utils/logger';
+  import type { GitHubStats, GitHubRepo } from '$lib/types/portfolio';
   
   let sectionRef: HTMLElement;
   let isVisible = $state(false);
@@ -43,9 +44,45 @@
       stats = statsData;
       repos = reposData.slice(0, 6); // Show top 6 repos
     } catch (error) {
-      console.error('Error loading GitHub data:', error);
+      logger.error('Failed to load GitHub data', error);
     } finally {
       loading = false;
+    }
+  }
+
+  function getLanguageColor(language: string): string {
+    const colors: Record<string, string> = {
+      JavaScript: '#f1e05a',
+      TypeScript: '#2b7489',
+      Python: '#3572A5',
+      Java: '#b07219',
+      HTML: '#e34c26',
+      CSS: '#563d7c',
+      Vue: '#4FC08D',
+      React: '#61DAFB',
+      Svelte: '#ff3e00',
+      // Add more as needed
+    };
+    return colors[language] || '#6b7280';
+  }
+
+  function formatRepoDate(dateString: string): string {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - date.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays < 7) {
+      return `${diffDays} días atrás`;
+    } else if (diffDays < 30) {
+      const weeks = Math.floor(diffDays / 7);
+      return `${weeks} ${weeks === 1 ? 'semana' : 'semanas'} atrás`;
+    } else if (diffDays < 365) {
+      const months = Math.floor(diffDays / 30);
+      return `${months} ${months === 1 ? 'mes' : 'meses'} atrás`;
+    } else {
+      const years = Math.floor(diffDays / 365);
+      return `${years} ${years === 1 ? 'año' : 'años'} atrás`;
     }
   }
 </script>
