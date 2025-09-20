@@ -27,16 +27,10 @@
 </svelte:head>
 
 <div class="min-h-screen transition-colors">
-	<Header />
 
 	<main class="relative">
 		<Hero {profile} />
 		
-		<!-- Secciones principales con mejor espaciado -->
-		<div class="max-w-7xl mx-auto">
-			<About {profile} />
-			<Experience />
-		</div>
 	</main>
 
 	<Footer />

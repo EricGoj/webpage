@@ -192,7 +192,7 @@ export const translations: Record<'es' | 'en', Translations> = {
     },
     hero: {
       title: 'Eric Quevedo',
-      subtitle: 'Building Software from 🇦🇷, trying to make a difference',
+      subtitle: 'Building Software from Argentina 🇦🇷 ',
 
       viewProjects: 'View Projects',
       cards: {

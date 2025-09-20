@@ -1,12 +1,14 @@
-<script context="module" lang="ts">
+<script module lang="ts">
   declare const anime: any;
 </script>
 
 <script lang="ts">
   import { onMount } from 'svelte';
   import NavigationCard from '$lib/components/ui/NavigationCard.svelte';
+  import AnimatedText from '$lib/components/ui/AnimatedText.svelte';
   import { language } from '$lib/stores/language';
   import { getTranslations } from '$lib/i18n/translations';
+  import { animationConfig } from '$lib/config/animations';
   import type { ProfileData } from '$lib/types/portfolio';
 
   interface Props {
@@ -24,10 +26,13 @@
     return unsubscribe;
   });
 
+  let showTextAnimations = $state(false);
+  
   onMount(() => {
     if (typeof anime === 'undefined') {
       console.error("anime.js not loaded, falling back to CSS.");
       startCSSAnimations();
+      showTextAnimations = true;
       return;
     }
 
@@ -41,20 +46,18 @@
         targets: '.profile-image',
         translateX: [-100, 0],
         opacity: [0, 1],
-        duration: 1000
+        duration: 1000,
+        complete: () => {
+          // Start text animations after profile image appears
+          showTextAnimations = true;
+        }
       })
-      .add({
-        targets: '.hero-title, .hero-subtitle',
-        translateY: [30, 0],
-        opacity: [0, 1],
-        delay: anime.stagger(100)
-      }, '-=800')
       .add({
         targets: '.navigation-card',
         translateY: [20, 0],
         opacity: [0, 1],
-        delay: anime.stagger(100, { start: 200 })
-      }, '-=700')
+        delay: anime.stagger(100, { start: 800 })
+      }, '-=200')
       .add({
         targets: '.scroll-indicator',
         translateY: [20, 0],
@@ -66,13 +69,11 @@
   function startCSSAnimations() {
     const elements: { selector: string, delay: number }[] = [
       { selector: '.profile-image', delay: 0 },
-      { selector: '.hero-title', delay: 400 },
-      { selector: '.hero-subtitle', delay: 500 },
       ...Array.from(document.querySelectorAll('.navigation-card')).map((_, i) => ({
         selector: `.navigation-card:nth-of-type(${i + 1})`,
-        delay: 800 + i * 100
+        delay: 1200 + i * 100
       })),
-      { selector: '.scroll-indicator', delay: 1200 }
+      { selector: '.scroll-indicator', delay: 1600 }
     ];
 
     elements.forEach(el => {
@@ -161,12 +162,35 @@
     <!-- Text content and cards -->
     <div class="text-center lg:text-left">
       <div class="mb-8">
-        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-          {t.hero.title}
-        </h1>
-        <p class="hero-subtitle text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
-          {t.hero.subtitle}
-        </p>
+        {#if showTextAnimations}
+          <AnimatedText
+            text={t.hero.title}
+            animationType={animationConfig.hero.title.type}
+            duration={animationConfig.hero.title.duration}
+            delay={animationConfig.hero.title.delay}
+            stagger={animationConfig.hero.title.stagger}
+            easing={animationConfig.hero.title.easing}
+            elementType="h1"
+            class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4"
+          />
+          <AnimatedText
+            text={t.hero.subtitle}
+            animationType={animationConfig.hero.subtitle.type}
+            duration={animationConfig.hero.subtitle.duration}
+            delay={animationConfig.hero.subtitle.delay}
+            stagger={animationConfig.hero.subtitle.stagger}
+            easing={animationConfig.hero.subtitle.easing}
+            elementType="p"
+            class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300"
+          />
+        {:else}
+          <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4" style="opacity: 0">
+            {t.hero.title}
+          </h1>
+          <p class="hero-subtitle text-xl sm:text-2xl text-gray-600 dark:text-gray-300" style="opacity: 0">
+            {t.hero.subtitle}
+          </p>
+        {/if}
       </div>
       
       <div class="grid grid-cols-1 sm:grid-cols-2 auto-rows-fr gap-6 lg:gap-8 max-w-4xl mx-auto lg:mx-0">
@@ -185,35 +209,28 @@
     </div>
   </div>
   
-  <!-- Scroll indicator -->
-  <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-    <button 
-      onclick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-      class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-      aria-label="Scroll to about section"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-      </svg>
-    </button>
-  </div>
+
 </section>
 
 <style>
-  .profile-image, .hero-title, .hero-subtitle, .navigation-card, .scroll-indicator {
+  .profile-image, .scroll-indicator {
     opacity: 0;
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
   .profile-image {
     transform: translateX(-100px);
   }
-  .hero-title, .hero-subtitle {
-    transform: translateY(30px);
-  }
-  .navigation-card {
+  :global(.navigation-card) {
+    opacity: 0;
     transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
   .scroll-indicator {
     transform: translateY(20px);
+  }
+  
+  /* Add a subtle glow effect for the animated text */
+  :global(.animated-letter:hover) {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
   }
 </style>
